@@ -1,0 +1,20 @@
+{% extends 'parents/base_generic.html' %}
+{% load common_tags %}
+
+{% block title %}
+Searching for {% GET_field 'input' %}
+{% endblock %}
+
+{% block content %}
+
+  {% if entry_list %}
+    {% for entry in entry_list %}
+      {% include 'blog/includes/entry_resume.html' %}
+    {% endfor %}
+  {% else %}
+    <h1 class="text-center text-capitalize text-info">
+      Sorry, we haven't found any entries :,(
+    </h1>
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'parents/header_base.html' %}
+
+{% block body %}
+
+  <nav id="main-navbar" class="navbar navbar-default navbar-fixed-top">
+
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'blog:index' %}">
+        Just a Blog
+      </a>
+      <button type="button" class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="glyphicon glyphicon-menu-down"/>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+
+      <p class="navbar-text">{% block title %}{% endblock %}</p>
+
+      <button id='shime' class="btn btn-primary navbar-btn"
+            onclick="shimeclick()">
+        Shime
+      </button>
+
+      <form class="navbar-form navbar-left"
+            action="{% url 'blog:search' %}"
+            method="get">
+        <div class="form-group">
+          <input id="search-input" type="text" class="form-control"
+                 placeholder="Search Entries..."
+                 name="input"/>
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+      </form>
+
+      <nav class="nav navbar-nav navbar-right">
+        <li>
+          <a href="{% url 'login' %}">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            &ensp;Login
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+            &ensp;Register
+          </a>
+        </li>
+      </nav>
+
+    </div>
+
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="sidebar hidden-xs col-sm-3 col-md-2">
+        {% include 'includes/about_me.html' %}
+      </aside>
+      <main class="col-xs-12 col-sm-8 col-md-8">
+        {% include 'includes/pagination.html' %}
+        {% block content %}
+
+        {% endblock %}
+      </main>
+    </div>
+  </div>
+
+{% endblock %}

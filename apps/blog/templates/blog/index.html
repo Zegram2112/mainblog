@@ -1,0 +1,22 @@
+{% extends 'parents/base_generic.html' %}
+
+
+{% block title %}Index{% endblock %}
+
+
+{% block content %}
+
+  {% if entry_list %}
+    {% for entry in entry_list %}
+
+      {% include 'blog/includes/entry_resume.html' %}
+
+    {% endfor %}
+  {% else %}]
+
+    <h1>There are no entries yet.</h1>
+
+  {% endif %}
+
+{% endblock %}
+

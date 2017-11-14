@@ -1,0 +1,9 @@
+<section class='entry'>
+  {% include 'blog/includes/entry_header.html' %}
+
+  <div class="entry-content">
+    {{ entry.content|linebreaks|truncatewords:20 }}
+  </div>
+
+  {% include 'blog/includes/entry_footer.html' %}
+</section>

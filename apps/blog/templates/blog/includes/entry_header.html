@@ -1,0 +1,10 @@
+<div class="entry-header">
+  <h2 class="page-header text-capitalize">
+    <a href="{% url 'blog:detail' entry.id%}">{{ entry.title }}</a>
+    <small class="text-info">({{ entry.category }})</small>
+  </h2>
+
+  <h4 class="text-info">
+    {{ entry.pub_date|date:"l, d F Y"}}
+  </h4>
+</div>

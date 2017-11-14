@@ -1,0 +1,45 @@
+#main-navbar {
+    border-radius: 0;
+}
+
+#main-navbar .navbar-right {
+    margin-right: 0;
+}
+
+body {
+    padding-top: 70px;
+
+}
+
+.sidebar {
+    margin-left: 3rem;
+    margin-right: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.entry {
+    border: 1px solid slategrey;
+    border-radius: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    margin-bottom: 1rem;
+}
+
+.entry-header a {
+    color: inherit;
+}
+
+.entry-header a:hover {
+    color: dimgray;
+    text-decoration: none;
+}
+
+.entry-content {
+    text-indent: 2em;
+    text-align: justify;
+}

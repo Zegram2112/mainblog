@@ -1,0 +1,9 @@
+
+<hr/>
+<ul class="nav nav-pills">
+  {% for tag in entry.tag_set.all %}
+    <li><a href="#">
+      {{ tag }}
+    </a></li>
+  {% endfor %}
+</ul>
