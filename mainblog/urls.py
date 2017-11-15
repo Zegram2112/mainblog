@@ -19,6 +19,6 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^', include('apps.blog.urls')),
-    url(r'^auth/', include('django.contrib.auth.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^admin/', admin.site.urls),
 ]

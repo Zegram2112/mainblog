@@ -6,6 +6,15 @@ Login
 
 {% block content %}
 
+  {% if form.erros %}
+    <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
 
+  {% if next %}
+    {% if user.is_authenticated %}
+
+    {% endif %}
+
+  {% endif %}
 
 {% endblock %}
