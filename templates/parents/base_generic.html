@@ -40,7 +40,7 @@
         {% if user.is_authenticated %}
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="#">
+              <a href="{% url 'logout' %}">
                 <span class="glyphicon glyphicon-log-out"></span>
                 Log-out
               </a>

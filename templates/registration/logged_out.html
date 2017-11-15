@@ -1,0 +1,21 @@
+{% extends 'parents/base_generic.html' %}
+
+{% block title %}
+Log-out
+{% endblock %}
+
+{% block content %}
+  <div class="col-sm-offset-2 col-sm-10">
+    <div class="text-center">
+      <h1 class="">Logged out :(</h1>
+      <h3 class="">We hope to see you again!</h3>
+      <hr/>
+      <p>
+        <a class="info" href="{% url 'blog:index' %}">Go back to Index</a>
+      </p>
+      <p>
+        <a href="{% url 'login' %}">Wanna login again?</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}
