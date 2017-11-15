@@ -6,31 +6,43 @@ Login
 
 {% block content %}
 
-  {% if form.erros %}
-    <p>
-      Your username and password didn't match. Please try again.
-    </p>
-  {% endif %}
+  <div class="col-sm-offset-3 col-sm-6">
 
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page.
-      To proceed, please login with ans account that
-      has access.</p>
-    {% else %}
-      <p>Please login to see this page.</p>
+    {% if form.erros %}
+      <p>
+        Your username and password didn't match. Please try again.
+      </p>
     {% endif %}
-  {% endif %}
 
-  <form metod="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="login"/>
-    <input type="hidden" name="next" value="{{ next }}"/>
-  </form>
+    {% if next %}
+      {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page.
+        To proceed, please login with ans account that
+        has access.</p>
+      {% else %}
+        <p>Please login to see this page.</p>
+      {% endif %}
+    {% endif %}
 
-  <p>
-    <a href="{% url 'password_reset' %}">Lost password?</a>
-  </p>
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="form-group">
+          <p class="text-danger small">{{ field.errors }}</p>
+          <label class="control-label">{{ field.label_tag }}</label><br>
+          {{ field }}
+        </div>
+      {% endfor %}
+      <div class="form-group">
+        <input class="btn btn-default" type="submit" value="login"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+      </div>
+    </form>
+
+    <p>
+      <a href="#">Lost password?</a>
+    </p>
+
+  </div>
 
 {% endblock %}
