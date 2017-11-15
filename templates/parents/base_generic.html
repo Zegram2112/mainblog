@@ -3,54 +3,68 @@
 {% block body %}
 
   <nav id="main-navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
 
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'blog:index' %}">
-        Just a Blog
-      </a>
-      <button type="button" class="navbar-toggle collapsed"
-              data-toggle="collapse"
-              data-target="#navbar-collapse" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="glyphicon glyphicon-menu-down"/>
-      </button>
-    </div>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'blog:index' %}">
+          Just a Blog
+        </a>
+        <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse"
+                data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="glyphicon glyphicon-menu-down"/>
+        </button>
+      </div>
 
-    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <div class="collapse navbar-collapse" id="navbar-collapse">
 
-      <p class="navbar-text">{% block title %}{% endblock %}</p>
+        <p class="navbar-text">{% block title %}{% endblock %}</p>
 
-      <button id='shime' class="btn btn-primary navbar-btn"
-            onclick="shimeclick()">
-        Shime
-      </button>
+        <button id='shime' class="btn btn-primary navbar-btn"
+                onclick="shimeclick()">
+          Shime
+        </button>
 
-      <form class="navbar-form navbar-left"
-            action="{% url 'blog:search' %}"
-            method="get">
-        <div class="form-group">
-          <input id="search-input" type="text" class="form-control"
-                 placeholder="Search Entries..."
-                 name="input"/>
-        </div>
-        <button type="submit" class="btn btn-default">Search</button>
-      </form>
+        <form class="navbar-form navbar-left"
+              action="{% url 'blog:search' %}"
+              method="get">
+          <div class="form-group">
+            <input id="search-input" type="text" class="form-control"
+                   placeholder="Search Entries..."
+                   name="input"/>
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li class="">
-          <a href="{% url 'login' %}">
-            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            &ensp;Login
-          </a>
-        </li>
-        <li class="">
-          <a href="#">
-            <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-            &ensp;Register
-          </a>
-        </li>
-      </ul>
+        {% if user.is_authenticated %}
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#">
+                <span class="glyphicon glyphicon-log-out"></span>
+                Log-out
+              </a>
+            </li>
+          </ul>
+          <p class="navbar-text navbar-right">Logged as {{ user.username }}</p>
+        {% else %}
+          <ul class="nav navbar-nav navbar-right">
+            <li class="">
+              <a href="{% url 'login' %}">
+                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                &ensp;Login
+              </a>
+            </li>
+            <li class="">
+              <a href="#">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                &ensp;Register
+              </a>
+            </li>
+          </ul>
+        {% endif %}
 
+      </div>
     </div>
 
   </nav>
