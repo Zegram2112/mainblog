@@ -1,4 +1,5 @@
 {% extends 'parents/base_generic.html' %}
+{% load bootstrap %}
 
 {% block title %}
 Login
@@ -7,12 +8,6 @@ Login
 {% block content %}
 
   <div class="col-sm-offset-3 col-sm-6">
-
-    {% if form.erros %}
-      <p>
-        Your username and password didn't match. Please try again.
-      </p>
-    {% endif %}
 
     {% if next %}
       {% if user.is_authenticated %}
@@ -26,13 +21,7 @@ Login
 
     <form method="post" action="{% url 'login' %}">
       {% csrf_token %}
-      {% for field in form %}
-        <div class="form-group">
-          <p class="text-danger small">{{ field.errors }}</p>
-          <label class="control-label">{{ field.label_tag }}</label><br>
-          {{ field }}
-        </div>
-      {% endfor %}
+      {{ form|bootstrap }}
       <div class="form-group">
         <input class="btn btn-default" type="submit" value="login"/>
         <input type="hidden" name="next" value="{{ next }}"/>
