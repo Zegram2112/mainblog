@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 
-from .models import Entry
+from .models import Entry, Tag
 
 
 class EntryListView(generic.ListView):
@@ -31,3 +31,8 @@ class SearchEntryView(EntryListView):
         context = super().get_context_data(**kwargs)
         context['search_query'] = self.request.GET.get('input')
         return context
+
+
+class TagDetailView(generic.DetailView):
+    template_name = 'blog/tag.html'
+    model = Tag

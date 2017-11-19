@@ -2,7 +2,7 @@
 <hr/>
 <ul class="nav nav-pills">
   {% for tag in entry.tag_set.all %}
-    <li><a href="#">
+    <li><a href="{% url 'blog:tag' tag.id %}">
       {{ tag }}
     </a></li>
   {% endfor %}

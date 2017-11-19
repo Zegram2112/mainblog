@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.shortcuts import reverse
 
 from . import utils
+from ..views import Tag
 
 
 class IndexViewTestCase(TestCase):
@@ -72,3 +73,35 @@ class SearchEntryViewTestCase(TestCase):
         response = self.client.get(reverse('blog:search'),
                                    data={'input': 'Hey man'})
         self.assertContains(response, 'Hey man')
+
+
+class TagDetailTestCase(TestCase):
+
+    def setUp(self):
+        self.e1 = utils.create_entry(name='Entry Past',
+                                     days_from_now=-30,
+                                     tags=['time', 'past'])
+        self.e2 = utils.create_entry(name='Entry Future',
+                                     days_from_now=30,
+                                     tags=['time', 'future'])
+        self.time = Tag.objects.get(name='time')
+        self.test = Tag.objects.create(name='test')
+
+    def test_with_null_tag(self):
+        response = self.client.get(reverse('blog:tag', args=(12342,)))
+        self.assertEqual(response.status_code, 404)
+
+    def test_with_correct_tag(self):
+        response = self.client.get(reverse('blog:tag', args=(self.time.pk,)))
+        self.assertContains(response, 'time')
+        self.assertQuerysetEqual(
+            response.context['tag'].entries.all(),[
+                '<Entry: Entry Future>',
+                '<Entry: Entry Past>',
+        ])
+
+    def test_tag_without_entries(self):
+        response = self.client.get(reverse('blog:tag', args=(self.test.pk,)))
+        self.assertContains(response, 'test')
+        self.assertQuerysetEqual(response.context['tag'].entries.all(),
+                                 [])

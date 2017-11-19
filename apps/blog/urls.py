@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import IndexView, EntryDetailView, SearchEntryView
+from .views import IndexView, EntryDetailView, SearchEntryView, TagDetailView
 
 app_name = 'blog'
 urlpatterns = [
@@ -9,4 +9,6 @@ urlpatterns = [
         name='detail'),
     url(r'^search/$', SearchEntryView.as_view(),
         name='search'),
+    url(r'^tag/(?P<pk>[0-9]+)/$', TagDetailView.as_view(),
+        name='tag'),
 ]

@@ -7,7 +7,8 @@ from ..models import Entry, Tag, Category
 
 def create_entry(name="Entry",
                  category_name="Category", text='',
-                 days_from_now=0, pub_date=None):
+                 days_from_now=0, pub_date=None,
+                 tags=[]):
     """Creates and saves an entry with determined values
 
     Parameters
@@ -23,17 +24,24 @@ def create_entry(name="Entry",
         and positive to future.
     pub_date: datetime
         If specified, it becomes the datetime of the entry
+    tags: list
+        List of tag names
     Returns
     -------
     Entry
     """
+    # TODO: USE GET_OR_CREATE
+    # Pub date
     if pub_date is None:
         time = timezone.now() + datetime.timedelta(days=days_from_now)
     else:
         time = pub_date
-    cat = Category(name=category_name)
-    cat.save()
-    return Entry.objects.create(
+    # Category
+    cat, _ = Category.objects.get_or_create(name=category_name)
+    entry = Entry.objects.create(
         title=name, category=cat, content=text, pub_date=time)
-
-
+    # Tag addition
+    for tag_name in tags:
+        tag, _ = Tag.objects.get_or_create(name=tag_name)
+        entry.tag_set.add(tag)
+    return entry

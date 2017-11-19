@@ -1,0 +1,18 @@
+{% extends 'parents/base_generic.html' %}
+
+{% block title %}{{ tag.name }}{% endblock %}
+
+{% block content %}
+
+  <h1 class='text-center'>
+    Entries with
+    <span class='text-primary'>
+      {{ tag.name }}
+    </span>
+  </h1>
+
+  {% for entry in tag.entries.all %}
+    {% include 'blog/includes/entry_resume.html' %}
+  {% endfor %}
+
+{% endblock %}
