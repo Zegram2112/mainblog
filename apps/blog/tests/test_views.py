@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.shortcuts import reverse
 
 from . import utils
-from ..views import Tag
+from ..views import Tag, Category
 
 
 class IndexViewTestCase(TestCase):
@@ -104,4 +104,37 @@ class TagDetailTestCase(TestCase):
         response = self.client.get(reverse('blog:tag', args=(self.test.pk,)))
         self.assertContains(response, 'test')
         self.assertQuerysetEqual(response.context['tag'].entries.all(),
+                                 [])
+
+
+class CategoryDetailTestCase(TestCase):
+
+    def setUp(self):
+        self.e1 = utils.create_entry(name='Entry Past',
+                                     days_from_now=-30,
+                                     category_name='Time')
+        self.e2 = utils.create_entry(name='Entry Future',
+                                     days_from_now=30,
+                                     category_name='Time')
+        self.category = Category.objects.get(name='Time')
+        self.empty_category = Category.objects.create(name='Empty')
+
+    def test_with_inexistent_category(self):
+        response = self.client.get(reverse('blog:category',
+                                   args=(12341,)))
+        self.assertEqual(response.status_code, 404)
+
+    def test_category_with_entries(self):
+        response = self.client.get(reverse('blog:category',
+                                           args=(self.category.id,)))
+        self.assertContains(response, self.category.name)
+        self.assertQuerysetEqual(response.context['category'].entry_set.all(),
+                                 ['<Entry: Entry Future>',
+                                  '<Entry: Entry Past>'],)
+
+    def test_empty_category(self):
+        response = self.client.get(reverse('blog:category',
+                                           args=(self.empty_category.id,)))
+        self.assertContains(response, self.empty_category.name)
+        self.assertQuerysetEqual(response.context['category'].entry_set.all(),
                                  [])

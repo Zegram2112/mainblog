@@ -1,7 +1,11 @@
 <div class="entry-header">
   <h2 class="page-header text-capitalize">
     <a href="{% url 'blog:detail' entry.id%}">{{ entry.title }}</a>
-    <small class="text-info">({{ entry.category }})</small>
+    <small class="text-info">
+      <a href="{% url 'blog:category' entry.category.id %}">
+        ({{ entry.category }})
+      </a>
+    </small>
   </h2>
 
   <h4 class="text-info">

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 
-from .models import Entry, Tag
+from .models import Entry, Tag, Category
 
 
 class EntryListView(generic.ListView):
@@ -36,3 +36,8 @@ class SearchEntryView(EntryListView):
 class TagDetailView(generic.DetailView):
     template_name = 'blog/tag.html'
     model = Tag
+
+
+class CategoryDetailView(generic.DetailView):
+    template_name = 'blog/category.html'
+    model = Category

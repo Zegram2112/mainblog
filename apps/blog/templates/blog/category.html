@@ -1,0 +1,16 @@
+{% extends 'parents/base_generic.html' %}
+
+{% block title %}{{ category.name }} Details{% endblock %}
+
+{% block content %}
+
+  <h1 class='text-center'>
+    <span class='text-primary'>{{ category.name }} </span>
+    entries
+  </h1>
+
+  {% for entry in category.entry_set.all %}
+    {% include 'blog/includes/entry_resume.html' %}
+  {% endfor %}
+
+{% endblock %}

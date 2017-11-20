@@ -1,5 +1,5 @@
 from django.conf.urls import url
-import views as v
+from . import views as v
 
 app_name = 'blog'
 urlpatterns = [
@@ -11,4 +11,6 @@ urlpatterns = [
         name='search'),
     url(r'^tag/(?P<pk>[0-9]+)/$', v.TagDetailView.as_view(),
         name='tag'),
+    url(r'^category/(?P<pk>[0-9]+)/$', v.CategoryDetailView.as_view(),
+        name='category')
 ]
