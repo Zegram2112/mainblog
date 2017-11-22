@@ -135,3 +135,16 @@ MEDIA_URL = '/media/'
 
 # Authentication
 LOGIN_REDIRECT_URL = '/'
+
+
+#Django RichTextField configuration
+DJRICHTEXTFIELD_CONFIG = {
+    'js': ['//tinymce.cachefly.net/4.1/tinymce.min.js'],
+    'init_template': 'djrichtextfield/init/tinymce.js',
+    'settings': {
+        'menubar': False,
+        'plugins': 'link image',
+        'toolbar': 'bolg italic | link image | removeformat',
+        'width': 700
+    }
+}
