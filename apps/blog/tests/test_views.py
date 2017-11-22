@@ -75,7 +75,7 @@ class SearchEntryViewTestCase(TestCase):
         self.assertContains(response, 'Hey man')
 
 
-class TagDetailTestCase(TestCase):
+class TagDetailViewTestCase(TestCase):
 
     def setUp(self):
         self.e1 = utils.create_entry(name='Entry Past',
@@ -107,7 +107,7 @@ class TagDetailTestCase(TestCase):
                                  [])
 
 
-class CategoryDetailTestCase(TestCase):
+class CategoryDetailViewTestCase(TestCase):
 
     def setUp(self):
         self.e1 = utils.create_entry(name='Entry Past',
