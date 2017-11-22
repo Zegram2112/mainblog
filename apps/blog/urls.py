@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^tag/(?P<pk>[0-9]+)/$', v.TagDetailView.as_view(),
         name='tag'),
     url(r'^category/(?P<pk>[0-9]+)/$', v.CategoryDetailView.as_view(),
-        name='category')
+        name='category'),
+    url(r'^signup/$', v.signup, name='signup'),
 ]
