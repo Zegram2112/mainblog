@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^', include('apps.blog.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^froala_editor/', include('froala_editor.urls'))
+    url(r'^djrichtextfield', include('djrichtextfield.urls')),
 ]
 
 if settings.DEBUG:
