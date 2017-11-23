@@ -2,7 +2,7 @@
   {% include 'blog/includes/entry_header.html' %}
 
   <div class="entry-content">
-    {{ entry.content|linebreaks}}
+    {{ entry.content|safe}}
   </div>
 
   {% include 'blog/includes/entry_footer.html' %}

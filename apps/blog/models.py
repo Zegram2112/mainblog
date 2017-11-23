@@ -1,4 +1,5 @@
 from django.db import models
+from djrichtextfield.models import RichTextField
 
 
 class Entry(models.Model):
@@ -6,7 +7,7 @@ class Entry(models.Model):
     """
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('publication date')
-    content = models.TextField()
+    content = RichTextField()
     category = models.ForeignKey('Category',
                                  on_delete=models.deletion.CASCADE)
 
